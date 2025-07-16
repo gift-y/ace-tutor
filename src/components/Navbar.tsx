@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className="mx-auto max-w-5xl p-5 md:rounded-3xl bg-primary/70 backdrop-blur-xs  text-milk fixed md:top-5 top-0 left-0 right-0 z-50">
+    <nav className="mx-auto max-w-5xl p-5 md:rounded-3xl bg-grey/40 backdrop-blur-xs fixed md:top-5 top-0 left-0 right-0 z-50">
         <div className="w-full flex items-center justify-between">  
           <div className="text-lg font-semibold">
             <Link href="/">AceTutor</Link>
@@ -18,7 +18,7 @@ const Navbar = () => {
               );
             })} */}
 
-            <RegisterLink>Get Started</RegisterLink>
+            <RegisterLink postLoginRedirectURL="/intro">Get Started</RegisterLink>
             <LoginLink>Login</LoginLink>
           </div>
         </div>

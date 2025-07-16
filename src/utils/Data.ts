@@ -49,3 +49,26 @@ export const content = [
         bgColor: "bg-orange-500",
     }
 ]
+
+// export const learningStyles = [
+//   {
+//     title: "Auditory",
+//     description: "Listening and discussions",
+//     bgCOlor:
+//   },
+//   {
+//     title: "Visual",
+//     description: "Images, videos and diagrams"
+//   },
+//   {
+//     title: "Kinesthetic",
+//     description: "Hands-on activities and practices"
+//   },
+//   {
+//     title: "Verbal",
+//     description: "Speaking and communication"
+//   },
+//   {
+//     title: "Read/Write",
+//     description: "Readind and taking notes"
+// ]

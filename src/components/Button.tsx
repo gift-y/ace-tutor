@@ -5,13 +5,15 @@ type ButtonProps = {
   className?: string;
   size?: 'small' | 'large';
   variant?: 'primary' | 'secondary';
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const Button = ({
     children,
     className = '',
     size = 'small',
-    variant = 'primary'
+    variant = 'primary',
+    onClick,
 } : ButtonProps) => {
 
     const buttonSize =
@@ -21,11 +23,11 @@ const Button = ({
 
     const buttonVariant =
         variant === 'secondary'
-            ? 'bg-mint text-primary'
-            : 'border-2 border-mint text-mint';
+            ? 'bg-black text-grey'
+            : 'border-2 border-black text-black';
 
     return (
-        <button className={`${buttonVariant} ${buttonSize}  rounded-full font-semibold ${className}`}>
+        <button onClick={onClick} className={`${buttonVariant} ${buttonSize}  rounded-full font-semibold ${className}`}>
             {children}
         </button>
     )

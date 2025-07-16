@@ -12,16 +12,16 @@ export default function Home() {
       <Wrapper>
         <section className="">
           <div className="flex items-center justify-center flex-col gap-6 min-h-[100dvh] w-full">
-            <h1 className="text-4xl md:text-7xl md:leading-22 tracking-tight font-semibold max-w-5xl text-center text-milk ">
+            <h1 className="text-4xl md:text-7xl md:leading-22 tracking-tight font-semibold max-w-5xl text-center    ">
               Personalized Education, Driven by AI
             </h1>
-            <p className="text-base md:text-2xl leading-7 max-w-xs md:max-w-2xl text-center md:py-6  text-milk">
+            <p className="text-base md:text-2xl leading-7 max-w-xs md:max-w-2xl text-center md:py-6    ">
               Empower every learner with AI-crafted education, unlocking
               personalized paths to success and growth.
             </p>
             <div className="hidden md:flex items-center justify-center gap-5">
            <Button size="large" variant="primary">
-                <RegisterLink>Get Started</RegisterLink>
+                <RegisterLink postLoginRedirectURL="/intro">Get Started</RegisterLink>
               </Button>
               <Button size="large" variant="secondary">
                 <Link href="/about">Learn More</Link>
@@ -29,7 +29,7 @@ export default function Home() {
             </div>
             <div className="md:hidden flex items-center justify-center gap-3">
               <Button size="small" variant="primary">
-                <RegisterLink>Get Started</RegisterLink>
+                <RegisterLink postLoginRedirectURL="/intro">Get Started</RegisterLink>
               </Button>
               <Button size="small" variant="secondary">
                 <Link href="/about">Learn More</Link>
@@ -55,7 +55,7 @@ export default function Home() {
           </div>
 
           <div className="mt-20 md:mt-32 px-4">
-            <h2 className="text-3xl lg:text-6xl text-center font-semibold text-milk leading-tight">
+            <h2 className="text-3xl lg:text-6xl text-center font-semibold    leading-tight">
               Involve your audience with dynamic, interactive quizzes.
             </h2>
           </div>
@@ -68,7 +68,7 @@ export default function Home() {
 
       <Wrapper>
         <div className="flex flex-col items-start justify-center w-full">
-          <h2 className="text-3xl text-milk md:text-5xl w-full md:w-xl text-left font-semibold pt-20 md:pt-20 lg:pt-40 py-10">
+          <h2 className="text-3xl    md:text-5xl w-full md:w-xl text-left font-semibold pt-20 md:pt-20 lg:pt-40 py-10">
             Designed for student groups, study sessions, and collaborative
             projects.
           </h2>
@@ -81,10 +81,10 @@ export default function Home() {
                   className="flex flex-col w-full md:w-1/3 h-full p-5 bg-[var(--accent)] rounded-xl"
                 >
                   <div className={`w-full h-72 rounded-2xl py-3 px-5 ${item.bgColor}`}>
-                    <h4 className="md:text-2xl text-milk text-3xl font-bold py-6">
+                    <h4 className="md:text-2xl    text-3xl font-bold py-6">
                       {item.title}
                     </h4>
-                    <p className="text-milk font-semibold">
+                    <p className="   font-semibold">
                       {item.description}
                     </p>
                   </div>

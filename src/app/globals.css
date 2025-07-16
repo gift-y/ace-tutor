@@ -3,11 +3,12 @@
 @theme {
   --font-geist-sans: var(--font-geist-sans);
 
-  --color-primary: #1e1e2e;
-  --color-milk: #f5e0dc;
+  --color-primary: #FFFFFF;
+  --color-grey: #EEEEEE;
   --color-mint: #94e2d5;
+  --color-pink: #EEB3EE;
 }
 
 body {
-  @apply font-geist-sans bg-primary text-milk
+  @apply font-geist-sans bg-primary text-shadow-black
 }
