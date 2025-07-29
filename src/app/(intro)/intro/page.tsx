@@ -172,7 +172,7 @@ const Page = () => {
             variant="secondary"
             onClick={() => setCurrentContent(0)}
           >
-            Start Over
+          <Link href="/dashboard">Get Started</Link>
           </Button>
         </div>
       </div>
