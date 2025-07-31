@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import Button from "@/components/Button";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const Page = () => {
   const [currentContent, setCurrentContent] = useState(0);
@@ -35,7 +35,7 @@ const Page = () => {
           </p>
         </div>
         <Button
-          size="small"
+          size="sm"
           variant="secondary"
           className="mt-6"
           onClick={handleNext}
@@ -64,10 +64,10 @@ const Page = () => {
           className="border border-gray-300 rounded-md p-2"
         />
         <div className="flex gap-4 mt-auto">
-          <Button size="small" variant="primary" onClick={handleBack}>
+          <Button size="sm" variant="default" onClick={handleBack}>
             Back
           </Button>
-          <Button size="small" variant="secondary" onClick={handleNext}>
+          <Button size="sm" variant="secondary" onClick={handleNext}>
             Next
           </Button>
         </div>
@@ -87,10 +87,10 @@ const Page = () => {
           <option value="coding">Learn Coding</option>
         </select>
         <div className="flex gap-4 mt-auto">
-          <Button size="small" variant="primary" onClick={handleBack}>
+          <Button size="sm" variant="default" onClick={handleBack}>
             Back
           </Button>
-          <Button size="small" variant="secondary" onClick={handleNext}>
+          <Button size="sm" variant="secondary" onClick={handleNext}>
             Next
           </Button>
         </div>
@@ -116,10 +116,10 @@ const Page = () => {
           Kinesthetic (Hands-on & Practice)
         </label>
         <div className="flex gap-4 mt-auto">
-          <Button size="small" variant="primary" onClick={handleBack}>
+          <Button size="sm" variant="default" onClick={handleBack}>
             Back
           </Button>
-          <Button size="small" variant="secondary" onClick={handleNext}>
+          <Button size="sm" variant="secondary" onClick={handleNext}>
             Next
           </Button>
         </div>
@@ -143,10 +143,10 @@ const Page = () => {
           className="border border-gray-300 rounded-md p-2"
         />
         <div className="flex gap-4 mt-auto">
-          <Button size="small" variant="primary" onClick={handleBack}>
+          <Button size="sm" variant="default" onClick={handleBack}>
             Back
           </Button>
-          <Button size="small" variant="secondary" onClick={handleNext}>
+          <Button size="sm" variant="secondary" onClick={handleNext}>
             Next
           </Button>
         </div>
@@ -164,11 +164,11 @@ const Page = () => {
           to dive in!
         </p>
         <div className="flex gap-4 mt-auto">
-          <Button size="small" variant="primary" onClick={handleBack}>
+          <Button size="sm" variant="default" onClick={handleBack}>
             Back
           </Button>
           <Button
-            size="small"
+            size="sm"
             variant="secondary"
             onClick={() => setCurrentContent(0)}
           >
@@ -188,8 +188,6 @@ const Page = () => {
             className={`absolute top-0 left-0 w-full h-full transition-transform duration-500 ease-in-out transform ${
               currentContent === index
                 ? "translate-x-0 opacity-100"
-                : currentContent > index
-                ? "-translate-x-full opacity-0"
                 : "translate-x-full opacity-0"
             } bg-white rounded-xl px-10 py-7`}
           >

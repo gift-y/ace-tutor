@@ -1,5 +1,5 @@
-import Button from './Button';
 import { features } from '../utils/Data';
+import { Button } from './ui/button';
 const Features = () => {
 
     return (
@@ -12,7 +12,7 @@ const Features = () => {
                     <div className="w-full md:w-1/2 md:p-8 text-[var(--secondary-color)] ">
                         <h3 className="text-4xl font-semibold">{feature.title}</h3>
                         <p className="text-lg py-5">{feature.description}</p>
-                        <Button size="small" variant="primary" className=''>
+                        <Button size="lg">
                             Learn More
                         </Button>
                     </div>
