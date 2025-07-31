@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Brain, BookOpen, Users, TrendingUp, Eye, Headphones, Hand, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
-export function Home() {
+export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
