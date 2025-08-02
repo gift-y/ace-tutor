@@ -16,8 +16,8 @@ const availableCourses = [
   { id: "literature", name: "Literature", description: "English, World Literature, Creative Writing." },
   { id: "programming", name: "Programming", description: "Python, JavaScript, Web Development." },
   { id: "art", name: "Art & Design", description: "Drawing, Painting, Digital Art." },
-  { id: "business", name: "Business", description: "Economics, Marketing, Management." }, // Added Business
-  { id: "engineering", name: "Engineering", description: "Civil, Mechanical, Electrical, Software." }, // Added Engineering
+  { id: "business", name: "Business", description: "Economics, Marketing, Management." },
+  { id: "engineering", name: "Engineering", description: "Civil, Mechanical, Electrical, Software." },
 ]
 
 export default function SelectCoursesStep({ selectedCourses, onSelectCourses }: SelectCoursesStepProps) {
