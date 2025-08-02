@@ -28,9 +28,9 @@ export default function LandingLayout({
       <div
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
+        {/* <Navbar/> */}
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </div>
   );
 }

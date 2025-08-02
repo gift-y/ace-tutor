@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components"
 import { Brain, BookOpen, Users, TrendingUp, Eye, Headphones, Hand, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
@@ -17,9 +18,7 @@ export default function Home() {
             </div>
             <h1 className="text-2xl font-bold text-gray-900">Ace Tutor</h1>
           </div>
-          <Link href="/auth">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">Get Started</Button>
-          </Link>
+         <Button> <RegisterLink> Get Started </RegisterLink></Button>
         </div>
       </header>
 
@@ -41,9 +40,7 @@ export default function Home() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="border-gray-300 text-gray-700 bg-transparent">
-              Watch Demo
-            </Button>
+          
           </div>
         </div>
       </section>
@@ -199,7 +196,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="container mx-auto px-4 py-8 border-t border-gray-200">
         <div className="text-center text-gray-600">
-          <p>&copy; 2024 Ace Tutor. All rights reserved.</p>
+          <p>&copy; 2025 Ace Tutor. All rights reserved.</p>
         </div>
       </footer>
     </div>

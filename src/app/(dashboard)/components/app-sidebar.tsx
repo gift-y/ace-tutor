@@ -1,7 +1,7 @@
 "use client"
 
 import type * as React from "react"
-import { BookOpen, Bot, ClipboardList, Home, Settings, User, GraduationCap, Headphones, Hand, Eye } from "lucide-react"
+import { BookOpen, Bot, ClipboardList, Home, Settings, User, GraduationCap, Headphones, Hand, Eye, } from "lucide-react"
 
 import {
   Sidebar,
@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/sidebar"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
+import Link from "next/link"
 
 const data = {
   user: {
@@ -28,36 +29,36 @@ const data = {
   navMain: [
     {
       title: "Overview",
-      url: "#",
+      url: "/dashboard",
       icon: Home,
       isActive: true,
     },
     {
       title: "Courses",
-      url: "#",
+      url: "/dashboard/courses",
       icon: BookOpen,
     },
     {
       title: "Assignments",
-      url: "#",
+      url: "/dashboard/assignments",
       icon: ClipboardList,
       badge: "3",
     },
     {
       title: "AI Tutor",
-      url: "#",
+      url: "/dashboard/ai-tutor",
       icon: Bot,
     },
   ],
   navSecondary: [
     {
       title: "Profile",
-      url: "#",
+      url: "/dashboard/profile",
       icon: User,
     },
     {
       title: "Settings",
-      url: "#",
+      url: "/dashboard/settings",
       icon: Settings,
     },
   ],
@@ -85,13 +86,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               {data.navMain.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton tooltip={item.title} isActive={item.isActive}>
-                    <item.icon />
-                    <span>{item.title}</span>
-                    {item.badge && (
-                      <Badge variant="secondary" className="ml-auto">
-                        {item.badge}
-                      </Badge>
-                    )}
+                   <Link href={item.url} className="flex items-center gap-2 w-full">  
+                      <item.icon size='15'/>
+                      <span>{item.title}</span>
+                      {item.badge && (
+                        <Badge variant="secondary" className="ml-auto">
+                          {item.badge}
+                        </Badge> 
+                      )} 
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
