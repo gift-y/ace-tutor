@@ -57,6 +57,16 @@ export async function POST(request: NextRequest) {
       pushNotifications = false,
       accessibilityMode = false,
       fontSize = 'medium',
+      learningStyle = [],
+      preferredTime = 'MORNING',
+      availableDays = [],
+      studySessionDuration = 60,
+      maxSessionsPerDay = 3,
+      preferredStartTime = '09:00',
+      preferredEndTime = '17:00',
+      preferredCategories = [],
+      preferredLevels = [],
+      maxCourseLoad = 3,
     } = body
 
     if (!userId) {
@@ -100,6 +110,16 @@ export async function POST(request: NextRequest) {
         pushNotifications,
         accessibilityMode,
         fontSize,
+        learningStyle,
+        preferredTime,
+        availableDays,
+        studySessionDuration,
+        maxSessionsPerDay,
+        preferredStartTime,
+        preferredEndTime,
+        preferredCategories,
+        preferredLevels,
+        maxCourseLoad,
       },
       include: {
         user: {
@@ -135,6 +155,16 @@ export async function PUT(request: NextRequest) {
       pushNotifications,
       accessibilityMode,
       fontSize,
+      learningStyle,
+      preferredTime,
+      availableDays,
+      studySessionDuration,
+      maxSessionsPerDay,
+      preferredStartTime,
+      preferredEndTime,
+      preferredCategories,
+      preferredLevels,
+      maxCourseLoad,
     } = body
 
     if (!userId) {
@@ -154,6 +184,16 @@ export async function PUT(request: NextRequest) {
         ...(typeof pushNotifications === 'boolean' && { pushNotifications }),
         ...(typeof accessibilityMode === 'boolean' && { accessibilityMode }),
         ...(fontSize && { fontSize }),
+        ...(learningStyle && { learningStyle }),
+        ...(preferredTime && { preferredTime }),
+        ...(availableDays && { availableDays }),
+        ...(studySessionDuration !== undefined && { studySessionDuration }),
+        ...(maxSessionsPerDay !== undefined && { maxSessionsPerDay }),
+        ...(preferredStartTime && { preferredStartTime }),
+        ...(preferredEndTime && { preferredEndTime }),
+        ...(preferredCategories && { preferredCategories }),
+        ...(preferredLevels && { preferredLevels }),
+        ...(maxCourseLoad !== undefined && { maxCourseLoad }),
       },
       include: {
         user: {

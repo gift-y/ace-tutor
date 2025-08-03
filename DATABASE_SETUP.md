@@ -25,6 +25,18 @@ The database includes the following models:
 - Notification settings
 - Accessibility options
 - Font size preferences
+- **Learning Preferences:**
+  - Learning styles (Auditory, Visual, Kinesthetic, Reading/Writing)
+  - Preferred learning time (Morning, Noon, Evening, Night)
+- **Schedule Preferences:**
+  - Available days for learning
+  - Study session duration (in minutes)
+  - Maximum sessions per day
+  - Preferred start and end times
+- **Course Selection Preferences:**
+  - Preferred course categories
+  - Preferred difficulty levels
+  - Maximum course load
 
 ### 3. Resource
 

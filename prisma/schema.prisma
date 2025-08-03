@@ -40,6 +40,23 @@ model UserPreferences {
   pushNotifications Boolean @default(false)
   accessibilityMode Boolean @default(false)
   fontSize          String @default("medium") // small, medium, large
+  
+  // Learning Preferences
+  learningStyle     LearningStyle[] @default([]) // Multiple learning styles can be selected
+  preferredTime     PreferredTime @default(MORNING) // When they prefer to learn
+  
+  // Schedule Preferences
+  availableDays     String[] @default([]) // Array of days: ["monday", "tuesday", etc.]
+  studySessionDuration Int @default(60) // Duration in minutes
+  maxSessionsPerDay Int @default(3) // Maximum study sessions per day
+  preferredStartTime String @default("09:00") // Preferred start time (HH:MM format)
+  preferredEndTime   String @default("17:00") // Preferred end time (HH:MM format)
+  
+  // Course Selection Preferences
+  preferredCategories String[] @default([]) // Array of preferred course categories
+  preferredLevels   CourseLevel[] @default([]) // Array of preferred difficulty levels
+  maxCourseLoad     Int @default(3) // Maximum number of courses to take simultaneously
+  
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
@@ -185,4 +202,18 @@ enum AssignmentStatus {
   SUBMITTED
   GRADED
   OVERDUE
+}
+
+enum LearningStyle {
+  AUDITORY
+  VISUAL
+  KINESTHETIC
+  READING_WRITING
+}
+
+enum PreferredTime {
+  MORNING
+  NOON
+  EVENING
+  NIGHT
 }

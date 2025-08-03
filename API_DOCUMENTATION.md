@@ -113,6 +113,16 @@ Get user preferences by user ID.
   "pushNotifications": false,
   "accessibilityMode": false,
   "fontSize": "medium",
+  "learningStyle": ["VISUAL", "KINESTHETIC"],
+  "preferredTime": "MORNING",
+  "availableDays": ["monday", "wednesday", "friday"],
+  "studySessionDuration": 90,
+  "maxSessionsPerDay": 2,
+  "preferredStartTime": "08:00",
+  "preferredEndTime": "16:00",
+  "preferredCategories": ["Programming", "Web Development"],
+  "preferredLevels": ["BEGINNER", "INTERMEDIATE"],
+  "maxCourseLoad": 2,
   "createdAt": "2024-01-01T00:00:00Z",
   "updatedAt": "2024-01-01T00:00:00Z",
   "user": {
@@ -138,9 +148,33 @@ Create new user preferences.
   "emailNotifications": true,
   "pushNotifications": false,
   "accessibilityMode": false,
-  "fontSize": "medium"
+  "fontSize": "medium",
+  "learningStyle": ["VISUAL", "KINESTHETIC"],
+  "preferredTime": "MORNING",
+  "availableDays": ["monday", "wednesday", "friday"],
+  "studySessionDuration": 90,
+  "maxSessionsPerDay": 2,
+  "preferredStartTime": "08:00",
+  "preferredEndTime": "16:00",
+  "preferredCategories": ["Programming", "Web Development"],
+  "preferredLevels": ["BEGINNER", "INTERMEDIATE"],
+  "maxCourseLoad": 2
 }
 ```
+
+**Learning Style Options:**
+
+- `AUDITORY` - Learn best by listening
+- `VISUAL` - Learn best by seeing
+- `KINESTHETIC` - Learn best by doing
+- `READING_WRITING` - Learn best by reading and writing
+
+**Preferred Time Options:**
+
+- `MORNING` - Best for early risers
+- `NOON` - Ideal for midday sessions
+- `EVENING` - Perfect after a long day
+- `NIGHT` - For night owls and quiet study
 
 #### PUT /api/user-preferences
 
@@ -153,7 +187,17 @@ Update user preferences.
   "userId": "user_id",
   "theme": "light",
   "language": "es",
-  "notifications": false
+  "notifications": false,
+  "learningStyle": ["AUDITORY", "READING_WRITING"],
+  "preferredTime": "EVENING",
+  "availableDays": ["tuesday", "thursday", "saturday"],
+  "studySessionDuration": 60,
+  "maxSessionsPerDay": 3,
+  "preferredStartTime": "18:00",
+  "preferredEndTime": "22:00",
+  "preferredCategories": ["Data Science", "Programming"],
+  "preferredLevels": ["INTERMEDIATE", "ADVANCED"],
+  "maxCourseLoad": 3
 }
 ```
 
