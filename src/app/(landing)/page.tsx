@@ -18,7 +18,7 @@ export default function Home() {
             </div>
             <h1 className="text-2xl font-bold text-gray-900">Ace Tutor</h1>
           </div>
-         <Button> <RegisterLink> Get Started </RegisterLink></Button>
+          <Button> <RegisterLink postLoginRedirectURL={process.env.KINDE_POST_LOGIN_REDIRECT_URL}> Get Started </RegisterLink></Button>
         </div>
       </header>
 
@@ -40,7 +40,7 @@ export default function Home() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-          
+
           </div>
         </div>
       </section>

@@ -1,0 +1,219 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  name        String?
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relationships
+  preferences UserPreferences?
+  courses     CourseEnrollment[]
+  assignments Assignment[]
+  resources   Resource[]
+
+  @@map("users")
+}
+
+model UserPreferences {
+  id                String @id @default(cuid())
+  userId            String @unique
+  theme             String @default("light") // light, dark, system
+  language          String @default("en") // en, es, fr, etc.
+  notifications     Boolean @default(true)
+  emailNotifications Boolean @default(true)
+  pushNotifications Boolean @default(false)
+  accessibilityMode Boolean @default(false)
+  fontSize          String @default("medium") // small, medium, large
+  
+  // Learning Preferences
+  learningStyle     LearningStyle[] @default([]) // Multiple learning styles can be selected
+  preferredTime     PreferredTime @default(MORNING) // When they prefer to learn
+  
+  // Schedule Preferences
+  availableDays     String[] @default([]) // Array of days: ["monday", "tuesday", etc.]
+  studySessionDuration Int @default(60) // Duration in minutes
+  maxSessionsPerDay Int @default(3) // Maximum study sessions per day
+  preferredStartTime String @default("09:00") // Preferred start time (HH:MM format)
+  preferredEndTime   String @default("17:00") // Preferred end time (HH:MM format)
+  
+  // Course Selection Preferences
+  preferredCategories String[] @default([]) // Array of preferred course categories
+  preferredLevels   CourseLevel[] @default([]) // Array of preferred difficulty levels
+  maxCourseLoad     Int @default(3) // Maximum number of courses to take simultaneously
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relationships
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+}
+
+model Resource {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  type        ResourceType
+  url         String?
+  filePath    String?
+  fileSize    Int? // in bytes
+  mimeType    String?
+  thumbnail   String?
+  isPublic    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relationships
+  userId      String
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courses     CourseResource[]
+  assignments AssignmentResource[]
+
+  @@map("resources")
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  image       String?
+  isPublished Boolean  @default(false)
+  isFree      Boolean  @default(false)
+  price       Decimal? @db.Decimal(10, 2)
+  duration    Int? // in minutes
+  level       CourseLevel @default(BEGINNER)
+  category    String?
+  tags        String[] // array of tags
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relationships
+  enrollments CourseEnrollment[]
+  resources   CourseResource[]
+  assignments Assignment[]
+
+  @@map("courses")
+}
+
+model CourseEnrollment {
+  id        String   @id @default(cuid())
+  userId    String
+  courseId  String
+  enrolledAt DateTime @default(now())
+  completedAt DateTime?
+  progress  Int @default(0) // percentage (0-100)
+  isActive  Boolean @default(true)
+
+  // Relationships
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+  @@map("course_enrollments")
+}
+
+model CourseResource {
+  id         String @id @default(cuid())
+  courseId   String
+  resourceId String
+  order      Int @default(0)
+  isRequired Boolean @default(true)
+
+  // Relationships
+  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  resource Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, resourceId])
+  @@map("course_resources")
+}
+
+model Assignment {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  courseId    String
+  userId      String
+  dueDate     DateTime?
+  status      AssignmentStatus @default(PENDING)
+  grade       Int? // 0-100
+  feedback    String?
+  submittedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relationships
+  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resources AssignmentResource[]
+
+  @@map("assignments")
+}
+
+model AssignmentResource {
+  id           String @id @default(cuid())
+  assignmentId String
+  resourceId   String
+  order        Int @default(0)
+
+  // Relationships
+  assignment Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  resource   Resource   @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
+  @@unique([assignmentId, resourceId])
+  @@map("assignment_resources")
+}
+
+enum ResourceType {
+  IMAGE
+  VIDEO
+  LINK
+  DOCUMENT
+  AUDIO
+  OTHER
+}
+
+enum CourseLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum AssignmentStatus {
+  PENDING
+  IN_PROGRESS
+  SUBMITTED
+  GRADED
+  OVERDUE
+}
+
+enum LearningStyle {
+  AUDITORY
+  VISUAL
+  KINESTHETIC
+  READING_WRITING
+}
+
+enum PreferredTime {
+  MORNING
+  NOON
+  EVENING
+  NIGHT
+}
