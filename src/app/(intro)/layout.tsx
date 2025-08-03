@@ -3,8 +3,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import { Sidebar, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "./components/app-sidebar";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -20,7 +18,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function DashboardLayout({
+export default function IntroLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -38,7 +36,7 @@ export default function DashboardLayout({
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <LoadingSpinner size="lg" text="Loading your dashboard..." />
+        <LoadingSpinner size="lg" text="Setting up your learning profile..." />
       </div>
     );
   }
@@ -49,13 +47,19 @@ export default function DashboardLayout({
   }
 
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <main
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <div className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50`}>
+      {/* Header */}
+      <header className="container mx-auto px-4 py-6">
+        <div className="flex items-center justify-end">
+          <div className="text-sm text-muted-foreground">
+            Setup your learning profile
+          </div>
+        </div>
+      </header>
+      
+      <main>
         {children}
       </main>
-    </SidebarProvider>
+    </div>
   );
-}
+} 

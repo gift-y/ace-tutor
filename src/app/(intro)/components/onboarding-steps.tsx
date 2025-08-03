@@ -8,12 +8,14 @@ import SchedulePreferencesStep from "./schedule-preferences-step"
 import SelectCoursesStep from "./select-courses-step" // Ensure this is imported
 import ConfirmationStep from "./confirmation-step"
 import { Progress } from "@/components/ui/progress"
+import { useRouter } from "next/navigation"
 
 type LearningPreference = "auditory" | "visual" | "kinesthetic" | "reading/writing"
 type LearningHours = "morning" | "evening" | "night" | "noon" | null
 type SchedulePreference = { day: string; duration: string }
 
 export default function OnboardingSteps() {
+  const router = useRouter()
   const [currentStep, setCurrentStep] = useState(0)
   const [learningPreferences, setLearningPreferences] = useState<LearningPreference[]>([])
   const [learningHours, setLearningHours] = useState<LearningHours>(null)
@@ -99,8 +101,8 @@ export default function OnboardingSteps() {
           </Button>
         )}
         {currentStep === totalSteps - 1 && (
-          <Button asChild className="ml-auto">
-            <a href="/dashboard">Go to Dashboard</a>
+          <Button onClick={() => router.push('/dashboard')} className="ml-auto">
+            Go to Dashboard
           </Button>
         )}
       </div>
