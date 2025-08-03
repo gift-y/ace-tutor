@@ -108,8 +108,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               {data.navSecondary.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton tooltip={item.title}>
-                    <item.icon />
-                    <span>{item.title}</span>
+                    <Link href={item.url} className="flex items-center gap-2 w-full">
+                      <item.icon size='15'/>
+                      <span>{item.title}</span>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
