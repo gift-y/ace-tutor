@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components"
+import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components"
 import { Brain, BookOpen, Users, TrendingUp, Eye, Headphones, Hand, FileText, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
@@ -18,7 +18,11 @@ export default function Home() {
             </div>
             <h1 className="text-2xl font-bold text-gray-900">Ace Tutor</h1>
           </div>
-          <Button> <RegisterLink postLoginRedirectURL={process.env.KINDE_POST_LOGIN_REDIRECT_URL}> Get Started </RegisterLink></Button>
+          <div className="gap-10 text-black">
+            <RegisterLink postLoginRedirectURL={process.env.KINDE_POST_LOGIN_REDIRECT_URL} className="text-white bg-blue-600 px-3 py-2 rounded-md mr-5 hover:bg-blue-500"> Register </RegisterLink>
+
+            <LoginLink postLoginRedirectURL={process.env.KINDE_POST_LOGIN_REDIRECT_URL} className="text-white bg-blue-600 px-3 py-2 rounded-md hover:bg-blue-500"> Login </LoginLink>
+          </div>
         </div>
       </header>
 
