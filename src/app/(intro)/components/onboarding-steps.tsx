@@ -5,25 +5,22 @@ import { Button } from "@/components/ui/button"
 import LearningPreferenceStep from "./learning-preference-step"
 import LearningHoursStep from "./learning-hours-step"
 import SchedulePreferencesStep from "./schedule-preferences-step"
-import SelectCoursesStep from "./select-courses-step"
-import ProfileSetupStep from "./profile-setup-step"
+import SelectCoursesStep from "./select-courses-step" // Ensure this is imported
 import ConfirmationStep from "./confirmation-step"
 import { Progress } from "@/components/ui/progress"
 
-type LearningPreference = "auditory" | "visual" | "kinesthetic" | "reading/writing" | null
+type LearningPreference = "auditory" | "visual" | "kinesthetic" | "reading/writing"
 type LearningHours = "morning" | "evening" | "night" | "noon" | null
-type SchedulePreference = { day: string; duration: string } // Changed 'time' to 'duration'
+type SchedulePreference = { day: string; duration: string }
 
 export default function OnboardingSteps() {
   const [currentStep, setCurrentStep] = useState(0)
-  const [learningPreference, setLearningPreference] = useState<LearningPreference>(null)
+  const [learningPreferences, setLearningPreferences] = useState<LearningPreference[]>([])
   const [learningHours, setLearningHours] = useState<LearningHours>(null)
-  const [schedulePreference, setSchedulePreference] = useState<SchedulePreference | null>(null) // Changed to single object
+  const [schedulePreferences, setSchedulePreferences] = useState<SchedulePreference[]>([])
   const [selectedCourses, setSelectedCourses] = useState<string[]>([])
-  const [nickname, setNickname] = useState<string>("")
-  const [profileImage, setProfileImage] = useState<string>("/placeholder.svg?height=100&width=100")
 
-  const totalSteps = 6 // Learning Preference, Learning Hours, Schedule, Courses, Profile, Confirmation
+  const totalSteps = 5 // Corrected: Learning Preference (0), Learning Hours (1), Schedule (2), Courses (3), Confirmation (4)
 
   const handleNext = () => {
     setCurrentStep((prev) => Math.min(prev + 1, totalSteps - 1))
@@ -36,16 +33,15 @@ export default function OnboardingSteps() {
   const isNextDisabled = () => {
     switch (currentStep) {
       case 0: // Learning Preference
-        return !learningPreference
+        return learningPreferences.length === 0
       case 1: // Learning Hours
         return !learningHours
       case 2: // Schedule Preferences
-        // Check if a day AND a duration are selected
-        return !schedulePreference?.day || !schedulePreference?.duration
-      case 3: // Select Courses
+        return schedulePreferences.length === 0 || schedulePreferences.some((pref) => !pref.day || !pref.duration)
+      case 3: // Select Courses - This is the newly visible step
         return selectedCourses.length === 0
-      case 4: // Profile Setup
-        return !nickname
+      case 4: // Confirmation - No next button, leads to dashboard
+        return false
       default:
         return false
     }
@@ -55,42 +51,30 @@ export default function OnboardingSteps() {
     switch (currentStep) {
       case 0:
         return (
-          <LearningPreferenceStep selectedPreference={learningPreference} onSelectPreference={setLearningPreference} />
+          <LearningPreferenceStep
+            selectedPreferences={learningPreferences}
+            onSelectPreference={setLearningPreferences}
+          />
         )
       case 1:
         return <LearningHoursStep selectedHours={learningHours} onSelectHours={setLearningHours} />
       case 2:
         return (
           <SchedulePreferencesStep
-            selectedDay={schedulePreference?.day || null}
-            onSelectDay={(day) => setSchedulePreference((prev) => ({ ...prev, day, duration: prev?.duration || "" }))}
-            selectedDuration={schedulePreference?.duration || null}
-            onSelectDuration={(duration) =>
-              setSchedulePreference((prev) => ({ ...prev, duration, day: prev?.day || "" }))
-            }
+            schedulePreferences={schedulePreferences}
+            setSchedulePreferences={setSchedulePreferences}
           />
         )
-      case 3:
+      case 3: // This case now correctly renders the SelectCoursesStep
         return <SelectCoursesStep selectedCourses={selectedCourses} onSelectCourses={setSelectedCourses} />
-      case 4:
-        return (
-          <ProfileSetupStep
-            nickname={nickname}
-            setNickname={setNickname}
-            profileImage={profileImage}
-            setProfileImage={setProfileImage}
-          />
-        )
-      case 5:
+      case 4: // This is now the Confirmation Step
         return (
           <ConfirmationStep
             preferences={{
-              learningPreference,
+              learningPreferences,
               learningHours,
-              schedulePreference, // Pass single object
+              schedulePreferences,
               selectedCourses,
-              nickname,
-              profileImage,
             }}
           />
         )
