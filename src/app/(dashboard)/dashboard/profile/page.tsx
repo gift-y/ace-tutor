@@ -110,41 +110,41 @@ export default function ProfilePage() {
     nextLevelExp: 1500
   })
 
-  // Mock achievements data
-  const achievements: Achievement[] = [
-    {
-      id: "1",
-      title: "First Course Completed",
-      description: "Successfully completed your first course",
-      icon: "🎓",
-      earnedAt: new Date("2024-02-01"),
-      type: "completion"
-    },
-    {
-      id: "2",
-      title: "7-Day Learning Streak",
-      description: "Learned for 7 consecutive days",
-      icon: "🔥",
-      earnedAt: new Date("2024-02-15"),
-      type: "streak"
-    },
-    {
-      id: "3",
-      title: "Perfect Score",
-      description: "Achieved 100% on a quiz",
-      icon: "⭐",
-      earnedAt: new Date("2024-03-01"),
-      type: "score"
-    },
-    {
-      id: "4",
-      title: "Active Participant",
-      description: "Participated in 10 discussions",
-      icon: "💬",
-      earnedAt: new Date("2024-03-10"),
-      type: "participation"
-    }
-  ]
+  // // Mock achievements data
+  // const achievements: Achievement[] = [
+  //   {
+  //     id: "1",
+  //     title: "First Course Completed",
+  //     description: "Successfully completed your first course",
+  //     icon: "🎓",
+  //     earnedAt: new Date("2024-02-01"),
+  //     type: "completion"
+  //   },
+  //   {
+  //     id: "2",
+  //     title: "7-Day Learning Streak",
+  //     description: "Learned for 7 consecutive days",
+  //     icon: "🔥",
+  //     earnedAt: new Date("2024-02-15"),
+  //     type: "streak"
+  //   },
+  //   {
+  //     id: "3",
+  //     title: "Perfect Score",
+  //     description: "Achieved 100% on a quiz",
+  //     icon: "⭐",
+  //     earnedAt: new Date("2024-03-01"),
+  //     type: "score"
+  //   },
+  //   {
+  //     id: "4",
+  //     title: "Active Participant",
+  //     description: "Participated in 10 discussions",
+  //     icon: "💬",
+  //     earnedAt: new Date("2024-03-10"),
+  //     type: "participation"
+  //   }
+  // ]
 
   const [editForm, setEditForm] = useState({
     username: userProfile.username,
@@ -508,7 +508,7 @@ export default function ProfilePage() {
             </div>
           </TabsContent>
 
-          {/* Achievements Tab */}
+          {/* Achievements Tab
           <TabsContent value="achievements" className="space-y-6">
             <Card>
               <CardHeader>
@@ -536,7 +536,7 @@ export default function ProfilePage() {
                 </div>
               </CardContent>
             </Card>
-          </TabsContent>
+          </TabsContent> */}
 
           {/* Statistics Tab */}
           <TabsContent value="stats" className="space-y-6">

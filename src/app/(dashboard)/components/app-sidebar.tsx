@@ -1,7 +1,7 @@
 "use client"
 
 import type * as React from "react"
-import { BookOpen, Bot, ClipboardList, Home, Settings, User } from "lucide-react"
+import { BookOpen, Brain, Bot, ClipboardList, Home, LogOut, User } from "lucide-react"
 
 import {
   Sidebar,
@@ -18,7 +18,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import Logo from "@/components/Logo"
+// import Logo from "@/components/Logo"
 
 const data = {
   user: {
@@ -58,9 +58,9 @@ const data = {
       icon: User,
     },
     {
-      title: "Settings",
-      url: "/dashboard/settings",
-      icon: Settings,
+      title: "LogOut",
+      url: "/dashboard/logout",
+      icon: LogOut,
     },
   ],
 }
@@ -70,7 +70,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
         <div className="flex items-center gap-2 px-2 py-2">
-          <Logo variant="sidebar" showText={true} />
+        {/* <div className="flex items-center gap-3"> */}
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+              <Brain className="h-6 w-6 text-white" />
+            </div>
+            <h1 className="text-2xl font-bold text-gray-900">Ace Tutor</h1>
+          </div>
+          <div className="gap-10 text-black">
         </div>
       </SidebarHeader>
       <SidebarContent>
